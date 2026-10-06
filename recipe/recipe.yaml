@@ -48,6 +48,7 @@ about:
     - mathutil-license.txt
     - thrift-license.txt
     - jmespath-license.txt
+    # v0.1.0 tag lacks LICENSE: https://github.com/nexus-rpc/nexus-proto-annotations/issues/5
     - nexus-proto-annotations-license.txt
 
   summary: Command-line interface for running and interacting with Temporal Server and UI
