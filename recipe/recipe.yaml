@@ -1,5 +1,5 @@
 context:
-  version: "1.8.3"
+  version: "1.9.1"
 
 package:
   name: temporalio-cli
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://github.com/temporalio/cli/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 14280dbc5f157373a2b34d7d333dd0c8f1b8506fa9ff5b332edc9048527af6f8
+  sha256: d0310b8f4ef26b8a2240aa2e783c67c099406be01f34cf4edb3ae8aa2d86b7bb
   target_directory: src
 
 build:
   number: 0
   script:
     - cd src
-    - go-licenses save ./cmd/temporal --save_path ../library_licenses --ignore github.com/cactus/go-statsd-client/statsd --ignore modernc.org/mathutil --ignore github.com/apache/thrift/lib/go/thrift --ignore github.com/jmespath/go-jmespath --ignore github.com/temporalio/cli/cliext
+    - go-licenses save ./cmd/temporal --save_path ../library_licenses --ignore github.com/cactus/go-statsd-client/statsd --ignore modernc.org/mathutil --ignore github.com/apache/thrift/lib/go/thrift --ignore github.com/jmespath/go-jmespath --ignore github.com/temporalio/cli/cliext --ignore github.com/nexus-rpc/nexus-proto-annotations
     - if: win
       then: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ raw_version }}" -v -o %LIBRARY_BIN%\temporal.exe ./cmd/temporal
       else: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ raw_version }}" -v -o $PREFIX/bin/temporal ./cmd/temporal
@@ -48,6 +48,7 @@ about:
     - mathutil-license.txt
     - thrift-license.txt
     - jmespath-license.txt
+    - nexus-proto-annotations-license.txt
 
   summary: Command-line interface for running and interacting with Temporal Server and UI
   description: |
